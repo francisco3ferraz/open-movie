@@ -30,7 +30,7 @@ func (app *application) readIdParam(r *http.Request) (int64, error) {
 func (app *application) writeJSON(w http.ResponseWriter, status int, data envelope, headers http.Header) error {
 	js, err := json.MarshalIndent(data, "", "\t")
 	if err != nil {
-		app.logger.Println(err)
+		app.logger.PrintError(err, nil)
 	}
 
 	js = append(js, '\n')
