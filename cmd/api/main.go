@@ -10,6 +10,7 @@ import (
 
 	"github.com/franciscofferraz/openMovie/internal/data"
 	"github.com/franciscofferraz/openMovie/internal/jsonlog"
+	"github.com/franciscofferraz/openMovie/internal/mailer"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
@@ -30,12 +31,20 @@ type config struct {
 		burst   int
 		enabled bool
 	}
+	smtp struct {
+		host     string
+		port     int
+		username string
+		password string
+		sender   string
+	}
 }
 
 type application struct {
 	config config
 	logger *jsonlog.Logger
 	models data.Models
+	mailer mailer.Mailer
 }
 
 func main() {
@@ -50,6 +59,10 @@ func main() {
 	port := os.Getenv("PORT")
 	env := os.Getenv("ENV")
 	dsn := os.Getenv("DSN")
+	smtp_port := os.Getenv("SMTP_PORT")
+	smtp_host := os.Getenv("SMTP_HOST")
+	smtp_username := os.Getenv("SMTP_USERNAME")
+	smtp_password := os.Getenv("SMTP_PASSWORD")
 
 	flag.IntVar(&cfg.port, port, 4000, "API server port")
 	flag.StringVar(&cfg.env, env, "development", "Environment (development|staging|production)")
@@ -63,6 +76,12 @@ func main() {
 	flag.Float64Var(&cfg.limiter.rps, "limiter-rps", 2, "Rate limiter maximum requests per second")
 	flag.IntVar(&cfg.limiter.burst, "limiter-burst", 4, "Rate limiter maximum burst")
 	flag.BoolVar(&cfg.limiter.enabled, "limiter-enabled", true, "Enable rate limiter")
+
+	flag.StringVar(&cfg.smtp.host, "smtp-host", smtp_host, "SMTP host")
+	flag.IntVar(&cfg.smtp.port, "smtp-port", 25, smtp_port)
+	flag.StringVar(&cfg.smtp.username, "smtp-username", smtp_username, "SMTP username")
+	flag.StringVar(&cfg.smtp.password, "smtp-password", smtp_password, "SMTP password")
+	flag.StringVar(&cfg.smtp.sender, "smtp-sender", "openMovie <no-reply@openmovie.ffranciscofferraz.net>", "SMTP sender")
 
 	flag.Parse()
 
@@ -81,6 +100,7 @@ func main() {
 		config: cfg,
 		logger: logger,
 		models: data.NewModels(db),
+		mailer: mailer.New(cfg.smtp.host, cfg.smtp.port, cfg.smtp.username, cfg.smtp.password, cfg.smtp.sender),
 	}
 
 	err = app.serve()
