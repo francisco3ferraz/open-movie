@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/franciscofferraz/openMovie/internal/validator"
+	"github.com/franciscofferraz/open-movie/internal/validator"
 	"github.com/julienschmidt/httprouter"
 )
 

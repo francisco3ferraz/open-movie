@@ -4,7 +4,7 @@ import (
 	"math"
 	"strings"
 
-	"github.com/franciscofferraz/openMovie/internal/validator"
+	"github.com/franciscofferraz/open-movie/internal/validator"
 )
 
 type Filters struct {

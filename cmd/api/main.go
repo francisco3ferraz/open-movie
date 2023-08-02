@@ -9,9 +9,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/franciscofferraz/openMovie/internal/data"
-	"github.com/franciscofferraz/openMovie/internal/jsonlog"
-	"github.com/franciscofferraz/openMovie/internal/mailer"
+	"github.com/franciscofferraz/open-movie/internal/data"
+	"github.com/franciscofferraz/open-movie/internal/jsonlog"
+	"github.com/franciscofferraz/open-movie/internal/mailer"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )

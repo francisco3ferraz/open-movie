@@ -1,4 +1,4 @@
-module github.com/franciscofferraz/openMovie
+module github.com/franciscofferraz/open-movie
 
 go 1.20
 

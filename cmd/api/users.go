@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/franciscofferraz/openMovie/internal/data"
-	"github.com/franciscofferraz/openMovie/internal/validator"
+	"github.com/franciscofferraz/open-movie/internal/data"
+	"github.com/franciscofferraz/open-movie/internal/validator"
 )
 
 func (app *application) registerUserHandler(w http.ResponseWriter, r *http.Request) {

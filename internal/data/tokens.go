@@ -8,7 +8,7 @@ import (
 	"encoding/base32"
 	"time"
 
-	"github.com/franciscofferraz/openMovie/internal/validator"
+	"github.com/franciscofferraz/open-movie/internal/validator"
 )
 
 const (
