@@ -2,8 +2,17 @@
 
 {{define "plainBody"}}
 Hi,
+
 Thanks for signing up for an account. We're excited to have you on board!
+
 For future reference, your user ID number is {{.ID}}.
+
+To activate your account please click the following link:
+
+h͟t͟t͟p͟s͟:͟/͟/͟e͟x͟a͟m͟p͟l͟e͟.͟c͟o͟m͟/͟u͟s͟e͟r͟s͟/͟a͟c͟t͟i͟v͟a͟t͟e͟?͟t͟o͟k͟e͟n͟=͟Y͟3͟Q͟M͟G͟X͟3͟P͟J͟3͟W͟L͟R͟L͟2͟Y͟R͟T͟Q͟G͟Q͟6͟K͟R͟H͟U͟
+
+Please note that this is a one-time use token and it will expire in 3 days.
+
 Thanks.
 {{end}}
 
@@ -20,6 +29,11 @@ Thanks.
     <p>Hi,</p>
     <p>Thanks for signing up for an account. We're excited to have you on board!</p>
     <p>For future reference, your user ID number is {{.ID}}.</p>
+    <p>To activate your account please click the following link:</p>
+    <pre><code>
+        {"token": "{{.activationToken}}"}
+    </code></pre>
+    <p>Please note that this is a one-time use token and it will expire in 3 days.</p>
     <p>Thanks.</p>
 </body>
 
